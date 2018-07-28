@@ -238,8 +238,7 @@ export default r
 
       return () => {
         unlisten();
-        d3
-          .select(elem)
+        d3.select(elem)
           .selectAll('tr')
           .selectAll('td')
           .each(function() {

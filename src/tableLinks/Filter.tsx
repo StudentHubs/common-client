@@ -8,7 +8,7 @@ import * as memoize from 'fast-memoize';
 import config from '../config';
 import { restyle } from '../utils';
 
-const memoizeValue = memoize(x => x);
+const memoizeValue = (memoize as any)(x => x);
 
 const getFieldHelp = field => {
   if (field.meta && field.meta.options) {
