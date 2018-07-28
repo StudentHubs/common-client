@@ -55,6 +55,11 @@ export default r
     dataRows: dataToRows(context, query, data),
   }))
   .do('context', (context, push) =>
+    context.store.listen('editing', (editing = {} as any) =>
+      push({ isEditing: !!editing.key }),
+    ),
+  )
+  .do('context', (context, push) =>
     context.store.listen('unchanged', (unchanged = {}) => push({ unchanged })),
   )
   .yield(
@@ -107,8 +112,9 @@ export default r
         'context',
         'dataRows',
         'style',
+        'isEditing',
         'unchanged',
-        (context, dataRows, style, unchanged) => {
+        (context, dataRows, style, _, unchanged) => {
           const editing = context.store.get('editing') || {};
 
           const rows = d3

@@ -88,7 +88,7 @@ export default r
       push({ isEditing: Object.keys(unchanged).length > 0 }),
     ),
   )
-  .do(props$ => {
+  .do((props$, _) => {
     const clear = () => {
       const { context } = props$();
       root.rgo.set(
